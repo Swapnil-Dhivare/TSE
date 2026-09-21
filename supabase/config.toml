@@ -1,0 +1,9 @@
+project_id = "tse-events"
+
+[functions.razorpay-webhook]
+# Razorpay sends no Supabase JWT. Without this the function 401s and Razorpay
+# silently retries forever.
+verify_jwt = false
+
+[functions.checkout-create]
+verify_jwt = true

@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Menu, X } from "lucide-react";
+import { Menu, Ticket, X } from "lucide-react";
 import { Logo } from "@/components/marketing/Logo";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/auth/AuthProvider";
 
 const NAV_LINKS = [
   { to: "/", label: "Home" },
+  { to: "/events", label: "Events" },
   { to: "/services", label: "Services" },
   { to: "/case-studies", label: "Case Studies" },
   { to: "/about", label: "About" },
@@ -32,6 +34,7 @@ function NavItem({ to, label, onClick }: { to: string; label: string; onClick?: 
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const { status } = useAuth();
 
   return (
     <header className="sticky top-0 z-50 border-b border-line/70 bg-paper/90 backdrop-blur">
@@ -44,7 +47,21 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-3 md:flex">
+          {status === "loading" ? (
+            <span className="h-10 w-28 animate-pulse rounded-full bg-muted" aria-hidden />
+          ) : status === "authenticated" ? (
+            <Link
+              to="/account"
+              className="flex items-center gap-2 rounded-full border border-line px-4 py-2 text-sm font-semibold text-ink hover:border-void/40"
+            >
+              <Ticket className="h-4 w-4 text-brand" /> My tickets
+            </Link>
+          ) : (
+            <Link to="/auth/sign-in" className="text-sm font-medium text-ink/70 hover:text-void">
+              Sign in
+            </Link>
+          )}
           <Link
             to="/contact"
             className="rounded-full bg-void px-5 py-2.5 text-sm font-semibold text-paper transition-transform hover:-translate-y-0.5 hover:bg-void/90"
