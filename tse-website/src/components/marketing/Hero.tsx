@@ -50,7 +50,7 @@ export function Hero() {
         {/* Oversized compressed display type — the single loudest element on the page. */}
         <h1 className="mt-6 font-display text-[clamp(3.5rem,13vw,11rem)] font-extrabold uppercase leading-[0.82] tracking-tight text-ink">
           <WordReveal text="Turn attention" />
-          <span className="block bg-gradient-to-r from-brand-lift via-heat to-brand-lift bg-clip-text text-transparent">
+          <span className="block text-muted-foreground">
             <WordReveal text="into customers" delay={0.25} />
           </span>
         </h1>

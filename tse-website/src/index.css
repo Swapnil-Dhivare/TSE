@@ -1,39 +1,40 @@
 @import "tailwindcss";
 
 :root {
-  /* Dark-native palette. Reference: high.live — near-black canvas, violet flood,
-     magenta accent, compressed display type. */
-  --void:       #08080c;   /* page canvas + deepest bands */
-  --surface:    #121219;   /* cards */
-  --surface-2:  #1b1b24;   /* elevated / hover */
-  --paper:      #f4f2ff;   /* light text on dark, and light sections */
-  --ink:        #e8e5f5;   /* primary text (now light — the app is dark-native) */
-  --muted:      #9aa1b2;   /* secondary text */
-  --line:       rgba(232, 229, 245, 0.12);
+  /* Neutral dark base. Greyscale does the work; a single restrained accent
+     carries actions, and warm red is reserved for urgency only. */
+  --void:       #0a0a0c;   /* page canvas */
+  --surface:    #141417;   /* cards */
+  --surface-2:  #1e1e22;   /* elevated / hover */
+  --paper:      #fafafa;   /* light text on dark, light surfaces */
+  --ink:        #ededef;   /* primary text */
+  --muted:      #96969e;   /* secondary text */
+  --line:       rgba(255, 255, 255, 0.10);
   --card:       var(--surface);
 
-  --brand:      #7c3aed;   /* violet — primary action */
-  --brand-lift: #a78bfa;   /* violet legible as text on dark */
-  --heat:       #d946ef;   /* magenta — urgency / live */
-  --lilac:      #ddd6fe;
+  --brand:      #8b7cf6;   /* the one accent — actions, active states */
+  --brand-lift: #b3a8fa;   /* accent legible as small text on dark */
+  --heat:       #e2674f;   /* urgency only: live, low stock, errors */
+  --lilac:      #d8d4e8;
 
   --radius:     18px;
 
   --background: var(--void);
   --foreground: var(--ink);
   --primary: var(--brand);
-  --primary-foreground: var(--paper);
+  --primary-foreground: #14121f;
   --secondary: var(--heat);
   --secondary-foreground: var(--paper);
-  --muted-surface: #16161f;
-  --accent-surface: rgba(124, 58, 237, 0.16);
-  --danger: #f43f5e;
+  --muted-surface: #17171b;
+  --accent-surface: rgba(139, 124, 246, 0.12);
+  --danger: #e2674f;
 
-  --tint-brand: rgba(124, 58, 237, 0.30);
-  --tint-heat:  rgba(217, 70, 239, 0.18);
-  --tint-void:  rgba(8, 8, 12, 0.6);
-  --dot-light:  rgba(232, 229, 245, 0.07);
-  --dot-dark:   rgba(232, 229, 245, 0.07);
+  /* Ambient wash kept very low so the canvas reads neutral, not purple. */
+  --tint-brand: rgba(139, 124, 246, 0.10);
+  --tint-heat:  rgba(226, 103, 79, 0.05);
+  --tint-void:  rgba(10, 10, 12, 0.6);
+  --dot-light:  rgba(255, 255, 255, 0.05);
+  --dot-dark:   rgba(255, 255, 255, 0.05);
 }
 
 @theme inline {

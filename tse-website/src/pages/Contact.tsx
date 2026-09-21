@@ -1,5 +1,5 @@
 import { Mail, MessageCircle } from "lucide-react";
-import { PageHeader } from "@/components/marketing/PageHeader";
+import { SectionIntro } from "@/components/marketing/SectionIntro";
 import { ContactForm } from "@/components/marketing/ContactForm";
 import { SectionReveal } from "@/components/marketing/SectionReveal";
 
@@ -12,7 +12,7 @@ const NEXT_STEPS = [
 export default function Contact() {
   return (
     <>
-      <PageHeader eyebrow="Contact" title="Get in touch" description="Tell us about your business." />
+      <SectionIntro eyebrow="Contact" title="Get in touch" description="Tell us about your business and we'll reply within a business day." />
 
       <SectionReveal className="mx-auto max-w-6xl px-6 py-16">
         <div className="grid gap-10 md:grid-cols-5">

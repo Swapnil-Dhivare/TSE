@@ -3,7 +3,8 @@ import { createBrowserRouter } from "react-router-dom";
 import { RootLayout } from "./RootLayout";
 import { MarketingLayout } from "@/components/layout/MarketingLayout";
 import { AppLayout } from "@/components/layout/AppLayout";
-import { RequireAuth } from "@/auth/guards";
+import { RequireAuth, RequireAdmin } from "@/auth/guards";
+import { AdminLayout } from "@/components/layout/AdminLayout";
 import Home from "@/pages/Home";
 import NotFound from "@/pages/NotFound";
 
@@ -35,6 +36,18 @@ export const router = createBrowserRouter([
           { path: "/about", element: page(() => import("@/pages/About")) },
           { path: "/contact", element: page(() => import("@/pages/Contact")) },
         ],
+      },
+      {
+        element: <RequireAdmin />,
+        children: [{
+          element: <AdminLayout />,
+          children: [
+            { path: "/admin", element: page(() => import("@/pages/admin/AdminEventList")) },
+            { path: "/admin/events", element: page(() => import("@/pages/admin/AdminEventList")) },
+            { path: "/admin/events/:id", element: page(() => import("@/pages/admin/AdminEventEditor")) },
+            { path: "/admin/orders", element: page(() => import("@/pages/admin/AdminOrders")) },
+          ],
+        }],
       },
       {
         element: <AppLayout />,

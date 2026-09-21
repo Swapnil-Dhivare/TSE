@@ -54,14 +54,14 @@ export default function Home() {
 
       {/* Upcoming events — violet flood band */}
       {upcoming.length > 0 && (
-        <section className="bg-brand py-24">
+        <section className="border-y border-line bg-surface py-24">
           <div className="mx-auto max-w-6xl px-6">
             <Reveal direction="left">
               <div className="flex flex-wrap items-end justify-between gap-6">
-                <h2 className="font-display text-5xl font-bold uppercase leading-[0.9] text-paper sm:text-7xl">
+                <h2 className="font-display text-5xl font-bold uppercase leading-[0.9] text-ink sm:text-7xl">
                   What's on
                 </h2>
-                <Link to="/events" className="group inline-flex items-center gap-2 font-semibold text-paper">
+                <Link to="/events" className="group inline-flex items-center gap-2 font-semibold text-brand-lift">
                   All events <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>

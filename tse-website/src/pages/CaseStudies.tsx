@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
-import { PageHeader } from "@/components/marketing/PageHeader";
+import { SectionIntro } from "@/components/marketing/SectionIntro";
+import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { CaseStudyCard } from "@/components/marketing/CaseStudyCard";
 import { CTASection } from "@/components/marketing/CTASection";
 import { SectionReveal } from "@/components/marketing/SectionReveal";
@@ -22,7 +23,7 @@ export default function CaseStudies() {
 
   return (
     <>
-      <PageHeader eyebrow="Our work" title="Real results for real businesses" />
+      <SectionIntro eyebrow="Our work" title="Real results for real businesses" />
 
       <SectionReveal className="mx-auto max-w-6xl px-6 py-14">
         <div className="flex flex-wrap justify-center gap-3">
@@ -44,11 +45,13 @@ export default function CaseStudies() {
         </div>
 
         {filtered.length > 0 ? (
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
+          <RevealGroup className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" stagger={0.09}>
             {filtered.map((caseStudy) => (
-              <CaseStudyCard key={caseStudy.slug} caseStudy={caseStudy} />
+              <RevealItem key={caseStudy.slug} direction="blur">
+                <CaseStudyCard caseStudy={caseStudy} />
+              </RevealItem>
             ))}
-          </div>
+          </RevealGroup>
         ) : (
           <div className="mt-10 rounded-2xl border border-dashed border-line bg-card p-16 text-center text-muted-foreground">
             No case studies in {filter} yet — try another filter.

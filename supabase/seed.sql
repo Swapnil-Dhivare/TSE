@@ -9,8 +9,10 @@ insert into public.events (slug, title, subtitle, description, category, venue_n
 -- date_trunc pins the time-of-day: without it, events inherit whatever clock
 -- time the seed happened to run at (e.g. a 12:15am workshop).
 select v.slug, v.title, v.subtitle, v.descr, v.category, v.venue, v.city,
-       date_trunc('day', now() + v.offset_days) + v.start_time,
-       date_trunc('day', now() + v.offset_days) + v.start_time + interval '3 hours',
+       (date_trunc('day', (now() + v.offset_days) at time zone 'Asia/Kolkata')
+          + v.start_time) at time zone 'Asia/Kolkata',
+       (date_trunc('day', (now() + v.offset_days) at time zone 'Asia/Kolkata')
+          + v.start_time + interval '3 hours') at time zone 'Asia/Kolkata',
        'published', v.venue is null
 from (values
   ('brand-systems-workshop', 'Building Your First Brand System',

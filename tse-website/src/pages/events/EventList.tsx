@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
-import { PageHeader } from "@/components/marketing/PageHeader";
+import { SectionIntro } from "@/components/marketing/SectionIntro";
+import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { CTASection } from "@/components/marketing/CTASection";
 import { EventCard } from "@/components/events/EventCard";
 import { useEvents } from "@/hooks/queries/useEvents";
@@ -42,7 +43,7 @@ export default function EventList() {
 
   return (
     <>
-      <PageHeader
+      <SectionIntro
         eyebrow="Events"
         title="What's on"
         description="Workshops, clinics and mixers we host. Small rooms, real takeaways."
@@ -76,9 +77,11 @@ export default function EventList() {
             We couldn't load events just now. Please refresh.
           </div>
         ) : filtered.length ? (
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((event) => <EventCard key={event.id} event={event} />)}
-          </div>
+          <RevealGroup className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" stagger={0.09}>
+            {filtered.map((event) => (
+              <RevealItem key={event.id} direction="up"><EventCard event={event} /></RevealItem>
+            ))}
+          </RevealGroup>
         ) : (
           <div className="mt-10 rounded-2xl border border-dashed border-line bg-card p-16 text-center text-muted-foreground">
             No {filter.toLowerCase()} events right now — check back soon.
