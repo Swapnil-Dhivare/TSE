@@ -15,11 +15,14 @@ type Mode = "signin" | "signup";
 export default function SignIn() {
   const [params] = useSearchParams();
   const next = params.get("next") ?? "/account";
-  const { signInWithGoogle, sendMagicLink, sendPhoneOtp, verifyPhoneOtp } = useAuth();
+  const { signInWithGoogle, sendMagicLink, signInWithPassword, signUpWithPassword,
+          sendPhoneOtp, verifyPhoneOtp } = useAuth();
   const providers = useAuthProviders();
 
   const [mode, setMode] = useState<Mode>(params.get("mode") === "signup" ? "signup" : "signin");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [usePassword, setUsePassword] = useState(true);
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
   const [otp, setOtp] = useState("");
@@ -129,12 +132,13 @@ export default function SignIn() {
         </div>
       )}
 
-      {providers.email && (
+      {providers.email && usePassword && (
         <form className="mt-6 space-y-4" onSubmit={(e: FormEvent) => {
           e.preventDefault();
           void run(async () => {
-            await sendMagicLink(email, { next, signUp: isSignUp, fullName });
-            setSentTo(email);
+            if (isSignUp) await signUpWithPassword(email, password, fullName);
+            else await signInWithPassword(email, password);
+            window.location.assign(next);
           });
         }}>
           {isSignUp && (
@@ -147,17 +151,53 @@ export default function SignIn() {
           <div className="space-y-1.5">
             <label className={labelCls} htmlFor="email">Email</label>
             <input id="email" type="email" required value={email} placeholder="you@company.com"
+              autoComplete="email" onChange={(e) => setEmail(e.target.value)} className={field} />
+          </div>
+          <div className="space-y-1.5">
+            <label className={labelCls} htmlFor="password">Password</label>
+            <input id="password" type="password" required minLength={6} value={password}
+              autoComplete={isSignUp ? "new-password" : "current-password"}
+              onChange={(e) => setPassword(e.target.value)} className={field} />
+          </div>
+          <button type="submit" disabled={busy}
+            className="w-full rounded-full bg-brand px-6 py-3 font-semibold text-primary-foreground disabled:opacity-50">
+            {busy ? "Please wait…" : isSignUp ? "Create account" : "Sign in"}
+          </button>
+          <button type="button" onClick={() => setUsePassword(false)}
+            className="w-full text-center text-xs text-muted-foreground hover:text-ink">
+            Email me a sign-in link instead
+          </button>
+        </form>
+      )}
+
+      {providers.email && !usePassword && (
+        <form className="mt-6 space-y-4" onSubmit={(e: FormEvent) => {
+          e.preventDefault();
+          void run(async () => {
+            await sendMagicLink(email, { next, signUp: isSignUp, fullName });
+            setSentTo(email);
+          });
+        }}>
+          {isSignUp && (
+            <div className="space-y-1.5">
+              <label className={labelCls} htmlFor="name2">Your name</label>
+              <input id="name2" required value={fullName} placeholder="Jane Doe"
+                onChange={(e) => setFullName(e.target.value)} className={field} />
+            </div>
+          )}
+          <div className="space-y-1.5">
+            <label className={labelCls} htmlFor="email2">Email</label>
+            <input id="email2" type="email" required value={email} placeholder="you@company.com"
               onChange={(e) => setEmail(e.target.value)} className={field} />
           </div>
           <button type="submit" disabled={busy}
             className="w-full rounded-full bg-brand px-6 py-3 font-semibold text-primary-foreground disabled:opacity-50">
-            {busy ? "Sending…" : isSignUp ? "Create account" : "Email me a sign-in link"}
+            {busy ? "Sending…" : "Email me a sign-in link"}
           </button>
-          <p className="text-center text-xs text-muted-foreground">
-            {isSignUp
-              ? "We'll email you a link to confirm — no password to remember."
-              : "We'll email you a secure link. No password needed."}
-          </p>
+          <button type="button" onClick={() => setUsePassword(true)}
+            className="w-full text-center text-xs text-muted-foreground hover:text-ink">
+            Use a password instead
+          </button>
         </form>
       )}
 
