@@ -20,7 +20,7 @@ export default function EventDetail() {
       <div className="mx-auto max-w-xl px-6 py-28 text-center">
         <h1 className="font-display text-3xl font-bold text-ink">Event not found</h1>
         <p className="mt-3 text-muted-foreground">This event doesn't exist or is no longer listed.</p>
-        <Link to="/events" className="mt-8 inline-flex rounded-full bg-void px-6 py-3 font-semibold text-paper">
+        <Link to="/events" className="mt-8 inline-flex rounded-full bg-brand px-6 py-3 font-semibold text-paper">
           Browse events
         </Link>
       </div>

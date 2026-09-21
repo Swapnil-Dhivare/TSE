@@ -67,9 +67,9 @@ export default function CaseStudyDetail() {
         ) : null}
 
         <div className="mt-8 flex items-start gap-4 rounded-2xl border border-line bg-accent p-7">
-          <TrendingUp className="mt-0.5 h-6 w-6 shrink-0 text-void" />
+          <TrendingUp className="mt-0.5 h-6 w-6 shrink-0 text-brand-lift" />
           <div>
-            <div className="text-xs font-semibold uppercase tracking-wide text-void">Results</div>
+            <div className="text-xs font-semibold uppercase tracking-wide text-brand-lift">Results</div>
             <p className="mt-1 font-display text-lg font-semibold text-ink">{caseStudy.results}</p>
           </div>
         </div>

@@ -1,35 +1,39 @@
 @import "tailwindcss";
 
 :root {
-  /* Role-named tokens. Values are the current blue/charcoal/red set; the new
-     platform identity replaces these values only (no call sites) in Phase 7. */
-  --ink: #212529;
-  --muted: #6c757d;
-  --line: #d3dade;
-  --paper: #e8edf1;
-  --card: #ffffff;
-  --brand: #0086c5;
-  --void: #3c363a;
-  --heat: #dc0201;
-  --radius: 18px;
+  /* Dark-native palette. Reference: high.live — near-black canvas, violet flood,
+     magenta accent, compressed display type. */
+  --void:       #08080c;   /* page canvas + deepest bands */
+  --surface:    #121219;   /* cards */
+  --surface-2:  #1b1b24;   /* elevated / hover */
+  --paper:      #f4f2ff;   /* light text on dark, and light sections */
+  --ink:        #e8e5f5;   /* primary text (now light — the app is dark-native) */
+  --muted:      #9aa1b2;   /* secondary text */
+  --line:       rgba(232, 229, 245, 0.12);
+  --card:       var(--surface);
 
-  --background: var(--paper);
+  --brand:      #7c3aed;   /* violet — primary action */
+  --brand-lift: #a78bfa;   /* violet legible as text on dark */
+  --heat:       #d946ef;   /* magenta — urgency / live */
+  --lilac:      #ddd6fe;
+
+  --radius:     18px;
+
+  --background: var(--void);
   --foreground: var(--ink);
   --primary: var(--brand);
   --primary-foreground: var(--paper);
   --secondary: var(--heat);
   --secondary-foreground: var(--paper);
-  --muted-surface: #dde3e8;
-  --accent-surface: #d6ecfa;
-  --danger: #b3261e;
+  --muted-surface: #16161f;
+  --accent-surface: rgba(124, 58, 237, 0.16);
+  --danger: #f43f5e;
 
-  /* Soft brand-colored washes used behind page content — keeps the light theme from
-     reading as flat white while staying subtle enough not to fight card content. */
-  --tint-brand: rgba(0, 134, 197, 0.32);
-  --tint-heat: rgba(220, 2, 1, 0.22);
-  --tint-void: rgba(60, 54, 58, 0.14);
-  --dot-light: rgba(33, 37, 41, 0.1);
-  --dot-dark: rgba(232, 237, 241, 0.1);
+  --tint-brand: rgba(124, 58, 237, 0.30);
+  --tint-heat:  rgba(217, 70, 239, 0.18);
+  --tint-void:  rgba(8, 8, 12, 0.6);
+  --dot-light:  rgba(232, 229, 245, 0.07);
+  --dot-dark:   rgba(232, 229, 245, 0.07);
 }
 
 @theme inline {
@@ -44,7 +48,7 @@
   --color-muted: var(--muted-surface);
   --color-muted-foreground: var(--muted);
   --color-accent: var(--accent-surface);
-  --color-accent-foreground: var(--void);
+  --color-accent-foreground: var(--brand-lift);
   --color-destructive: var(--danger);
   --color-border: var(--line);
   --color-input: var(--line);
@@ -53,6 +57,10 @@
   --color-void: var(--void);
   --color-brand: var(--brand);
   --color-heat: var(--heat);
+  --color-brand-lift: var(--brand-lift);
+  --color-lilac: var(--lilac);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
   --color-paper: var(--paper);
   --color-ink: var(--ink);
 
@@ -61,28 +69,28 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 6px);
 
-  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Big Shoulders Display", "Arial Narrow", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "Roboto Mono", monospace;
 }
 
 body {
   font-family: var(--font-sans);
   color: var(--foreground);
   background-color: var(--background);
-  /* Anchored to the viewport (not the document) so the wash reads as ambient colour in
-     every screenful as you scroll, instead of being a one-off patch buried behind a
-     single section. A fine dot grid rides on top for texture in the areas the colour
-     blobs don't reach, so plain stretches never read as flat empty white. */
-  background-attachment: fixed, fixed, fixed, fixed, fixed, fixed;
-  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat;
-  background-size: auto, auto, auto, auto, auto, 26px 26px;
+  background-attachment: fixed, fixed, fixed;
+  background-repeat: no-repeat, no-repeat, repeat;
+  background-size: auto, auto, 26px 26px;
   background-image:
-    radial-gradient(46rem 34rem at 4% 2%, var(--tint-brand), transparent 62%),
-    radial-gradient(40rem 32rem at 98% 16%, var(--tint-heat), transparent 62%),
-    radial-gradient(42rem 34rem at 2% 90%, var(--tint-void), transparent 62%),
-    radial-gradient(38rem 30rem at 100% 98%, var(--tint-brand), transparent 62%),
-    radial-gradient(70rem 60rem at 50% 45%, var(--tint-void), transparent 70%),
+    radial-gradient(60rem 42rem at 8% -6%, var(--tint-brand), transparent 60%),
+    radial-gradient(52rem 38rem at 100% 8%, var(--tint-heat), transparent 62%),
     radial-gradient(circle, var(--dot-light) 1px, transparent 1.4px);
+}
+
+/* Compressed display face: tight, loud, and always uppercase at large sizes. */
+.font-display {
+  font-stretch: condensed;
+  letter-spacing: -0.01em;
 }
 
 .bg-dot-grid-dark {
@@ -92,7 +100,7 @@ body {
 
 ::selection {
   background: var(--brand);
-  color: var(--void);
+  color: var(--paper);
 }
 
 html.custom-cursor,

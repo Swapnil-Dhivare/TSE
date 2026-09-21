@@ -24,7 +24,7 @@ export function TestimonialCarousel() {
           transition={{ duration: 0.3 }}
         >
           <p className="mt-5 text-lg leading-relaxed text-ink">"{testimonial.quote}"</p>
-          <div className="mt-6 text-sm font-semibold text-void">{testimonial.author}</div>
+          <div className="mt-6 text-sm font-semibold text-brand-lift">{testimonial.author}</div>
           <div className="text-xs text-muted-foreground">{testimonial.business}</div>
         </motion.div>
       </AnimatePresence>
@@ -34,7 +34,7 @@ export function TestimonialCarousel() {
           type="button"
           onClick={() => go(-1)}
           aria-label="Previous testimonial"
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-void hover:text-void"
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-void hover:text-brand-lift"
         >
           <ChevronLeft className="h-4 w-4" />
         </button>
@@ -55,7 +55,7 @@ export function TestimonialCarousel() {
           type="button"
           onClick={() => go(1)}
           aria-label="Next testimonial"
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-void hover:text-void"
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-void hover:text-brand-lift"
         >
           <ChevronRight className="h-4 w-4" />
         </button>

@@ -1,4 +1,5 @@
-import { Outlet } from "react-router-dom";
+
+import { PageTransition } from "@/components/motion/PageTransition";
 import { SiteHeader } from "./SiteHeader";
 import { SiteFooter } from "./SiteFooter";
 import { GrainOverlay } from "./GrainOverlay";
@@ -14,7 +15,7 @@ export function MarketingLayout() {
       <CustomCursor />
       <GrainOverlay />
       <SiteHeader />
-      <main className="flex-1"><Outlet /></main>
+      <main className="flex-1"><PageTransition /></main>
       <SiteFooter />
     </div>
   );

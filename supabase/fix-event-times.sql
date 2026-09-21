@@ -11,4 +11,9 @@ from (values
 ) as t(slug, start_time)
 where public.events.slug = t.slug;
 
-select slug, to_char(starts_at, 'Dy DD Mon HH24:MI') as starts from public.events order by starts_at;
+-- Online events have no venue; make sure they're flagged so the UI says "Online".
+update public.events set is_online = true
+ where venue_name is null and is_online is distinct from true;
+
+select slug, is_online, to_char(starts_at, 'Dy DD Mon HH24:MI') as starts
+  from public.events order by starts_at;

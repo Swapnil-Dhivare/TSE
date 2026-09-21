@@ -40,7 +40,7 @@ export default function SignIn() {
         type="button"
         onClick={() => signInWithGoogle(next)}
         disabled={!isPlatformConfigured}
-        className="mt-8 rounded-full border border-line bg-card px-6 py-3 font-semibold text-ink transition-colors hover:border-void/40 disabled:opacity-50"
+        className="mt-8 rounded-full border border-line bg-card px-6 py-3 font-semibold text-ink transition-colors hover:border-brand/50 disabled:opacity-50"
       >
         Continue with Google
       </button>
@@ -65,7 +65,7 @@ export default function SignIn() {
         {error && <p className="text-sm text-heat">{error}</p>}
         <button
           type="submit" disabled={busy || !isPlatformConfigured}
-          className="w-full rounded-full bg-void px-6 py-3 font-semibold text-paper disabled:opacity-50"
+          className="w-full rounded-full bg-brand px-6 py-3 font-semibold text-paper disabled:opacity-50"
         >
           {busy ? "Please wait…" : sent ? "Verify code" : "Send code"}
         </button>

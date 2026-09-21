@@ -23,7 +23,7 @@ const STEPS = [
     title: "Grow",
     description:
       "We track what matters, report in plain English, and keep refining instead of disappearing after launch.",
-    tint: "bg-void/10 text-void",
+    tint: "bg-void/10 text-brand-lift",
   },
 ];
 

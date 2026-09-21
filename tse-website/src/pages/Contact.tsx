@@ -26,7 +26,7 @@ export default function Contact() {
               <ol className="mt-4 space-y-3">
                 {NEXT_STEPS.map((step, index) => (
                   <li key={step} className="flex gap-3 text-sm text-muted-foreground">
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent text-xs font-semibold text-void">
+                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent text-xs font-semibold text-brand-lift">
                       {index + 1}
                     </span>
                     {step}
@@ -37,11 +37,11 @@ export default function Contact() {
 
             <div className="rounded-2xl border border-line bg-card p-6 shadow-sm shadow-ink/5">
               <div className="flex items-center gap-2 text-sm font-semibold text-ink">
-                <Mail className="h-4 w-4 text-void" />
+                <Mail className="h-4 w-4 text-brand-lift" />
                 hello@tseagency.example
               </div>
               <div className="mt-3 flex items-center gap-2 text-sm font-semibold text-ink">
-                <MessageCircle className="h-4 w-4 text-void" />
+                <MessageCircle className="h-4 w-4 text-brand-lift" />
                 Response within one business day
               </div>
             </div>

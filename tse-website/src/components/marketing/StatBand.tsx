@@ -20,7 +20,7 @@ const STATS = [
     value: "1",
     label: "Dedicated team, no hand-offs",
     icon: Users,
-    accent: "text-void",
+    accent: "text-brand-lift",
     tint: "bg-void/10",
   },
 ];

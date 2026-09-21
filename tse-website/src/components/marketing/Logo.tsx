@@ -8,7 +8,7 @@ export function Logo({ inverted = false, className }: { inverted?: boolean; clas
         T
       </span>
       <span className={cn("text-lg tracking-tight", inverted ? "text-paper" : "text-ink")}>
-        TSE <span className={inverted ? "text-brand" : "text-void"}>Agency</span>
+        TSE <span className={inverted ? "text-brand" : "text-brand-lift"}>Agency</span>
       </span>
     </Link>
   );

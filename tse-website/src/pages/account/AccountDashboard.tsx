@@ -46,7 +46,7 @@ export default function AccountDashboard() {
                   <div className="text-xs text-muted-foreground">{t.attendee_name}</div>
                 </div>
               </div>
-              <span className="rounded-full bg-accent px-3 py-1 text-xs font-semibold text-void">
+              <span className="rounded-full bg-accent px-3 py-1 text-xs font-semibold text-brand-lift">
                 {t.status}
               </span>
             </Link>

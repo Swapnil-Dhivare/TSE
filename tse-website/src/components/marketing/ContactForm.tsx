@@ -48,7 +48,7 @@ export function ContactForm() {
   if (status === "success") {
     return (
       <div className="flex flex-col items-center gap-3 rounded-2xl border border-line bg-accent p-10 text-center">
-        <CheckCircle2 className="h-10 w-10 text-void" />
+        <CheckCircle2 className="h-10 w-10 text-brand-lift" />
         <h3 className="font-display text-xl font-semibold text-ink">Message sent</h3>
         <p className="text-sm text-muted-foreground">
           Thanks for reaching out — we'll get back to you within a business day.
@@ -155,7 +155,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="flex w-full items-center justify-center gap-2 rounded-full bg-void px-6 py-3.5 font-semibold text-paper transition-transform hover:-translate-y-0.5 disabled:opacity-60 disabled:hover:translate-y-0"
+        className="flex w-full items-center justify-center gap-2 rounded-full bg-brand px-6 py-3.5 font-semibold text-paper transition-transform hover:-translate-y-0.5 disabled:opacity-60 disabled:hover:translate-y-0"
       >
         {status === "submitting" && <Loader2 className="h-4 w-4 animate-spin" />}
         {status === "submitting" ? "Sending…" : "Send message"}

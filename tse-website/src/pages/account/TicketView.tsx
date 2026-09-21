@@ -31,7 +31,7 @@ export default function TicketView() {
     return (
       <div className="mx-auto max-w-md px-6 py-28 text-center">
         <p className="text-muted-foreground">Ticket not found.</p>
-        <Link to="/account" className="mt-6 inline-flex rounded-full bg-void px-6 py-3 font-semibold text-paper">
+        <Link to="/account" className="mt-6 inline-flex rounded-full bg-brand px-6 py-3 font-semibold text-paper">
           My tickets
         </Link>
       </div>

@@ -55,7 +55,12 @@ export function EventCard({ event }: { event: EventWithTickets }) {
         <div className="mt-2 flex items-center gap-1.5 text-sm text-muted-foreground">
           {event.is_online ? <Video className="h-3.5 w-3.5" /> : <MapPin className="h-3.5 w-3.5" />}
           <span className="truncate">
-            {formatEventTime(event.starts_at)} · {event.is_online ? "Online" : [event.venue_name, event.city].filter(Boolean).join(", ")}
+            {[
+              formatEventTime(event.starts_at),
+              event.is_online ? "Online" : [event.venue_name, event.city].filter(Boolean).join(", "),
+            ]
+              .filter(Boolean)
+              .join(" · ")}
           </span>
         </div>
         <div className="mt-5 flex items-center justify-between border-t border-line pt-4">

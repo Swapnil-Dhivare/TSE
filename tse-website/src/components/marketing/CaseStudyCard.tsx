@@ -25,7 +25,7 @@ export function CaseStudyCard({ caseStudy }: { caseStudy: CaseStudy }) {
           )}
         </div>
         <div className="flex flex-1 flex-col p-6">
-          <span className="w-fit rounded-full bg-accent px-3 py-1 text-xs font-semibold text-void">
+          <span className="w-fit rounded-full bg-accent px-3 py-1 text-xs font-semibold text-brand-lift">
             {caseStudy.serviceCategory}
           </span>
           <h3 className="mt-4 font-display text-lg font-semibold leading-snug text-ink">

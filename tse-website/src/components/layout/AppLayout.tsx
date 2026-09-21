@@ -1,4 +1,5 @@
-import { Outlet } from "react-router-dom";
+
+import { PageTransition } from "@/components/motion/PageTransition";
 import { SiteHeader } from "./SiteHeader";
 import { SiteFooter } from "./SiteFooter";
 
@@ -11,7 +12,7 @@ export function AppLayout() {
   return (
     <div className="flex min-h-screen flex-col text-ink">
       <SiteHeader />
-      <main className="flex-1"><Outlet /></main>
+      <main className="flex-1"><PageTransition /></main>
       <SiteFooter />
     </div>
   );

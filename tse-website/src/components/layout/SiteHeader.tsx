@@ -22,8 +22,8 @@ function NavItem({ to, label, onClick }: { to: string; label: string; onClick?: 
       onClick={onClick}
       className={({ isActive }) =>
         cn(
-          "text-sm font-medium transition-colors hover:text-void",
-          isActive ? "text-void" : "text-ink/70",
+          "text-sm font-medium transition-colors hover:text-ink",
+          isActive ? "text-ink" : "text-muted-foreground",
         )
       }
     >
@@ -37,7 +37,7 @@ export function SiteHeader() {
   const { status } = useAuth();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line/70 bg-paper/90 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-line bg-void/70 backdrop-blur-xl">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         <Logo />
 
@@ -53,18 +53,18 @@ export function SiteHeader() {
           ) : status === "authenticated" ? (
             <Link
               to="/account"
-              className="flex items-center gap-2 rounded-full border border-line px-4 py-2 text-sm font-semibold text-ink hover:border-void/40"
+              className="flex items-center gap-2 rounded-full border border-line px-4 py-2 text-sm font-semibold text-ink hover:border-brand/50"
             >
               <Ticket className="h-4 w-4 text-brand" /> My tickets
             </Link>
           ) : (
-            <Link to="/auth/sign-in" className="text-sm font-medium text-ink/70 hover:text-void">
+            <Link to="/auth/sign-in" className="text-sm font-medium text-ink/70 hover:text-brand-lift">
               Sign in
             </Link>
           )}
           <Link
             to="/contact"
-            className="rounded-full bg-void px-5 py-2.5 text-sm font-semibold text-paper transition-transform hover:-translate-y-0.5 hover:bg-void/90"
+            className="rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-paper transition-transform hover:-translate-y-0.5 hover:bg-void/90"
           >
             Get a free consult
           </Link>
@@ -81,8 +81,8 @@ export function SiteHeader() {
             </button>
           </Dialog.Trigger>
           <Dialog.Portal>
-            <Dialog.Overlay className="fixed inset-0 z-50 bg-void/40 backdrop-blur-sm" />
-            <Dialog.Content className="fixed inset-y-0 right-0 z-50 flex w-72 flex-col gap-8 bg-paper px-6 py-6 shadow-xl">
+            <Dialog.Overlay className="fixed inset-0 z-50 bg-void/80 backdrop-blur-sm" />
+            <Dialog.Content className="fixed inset-y-0 right-0 z-50 flex w-72 flex-col gap-8 bg-surface px-6 py-6 shadow-xl">
               <div className="flex items-center justify-between">
                 <Dialog.Title asChild>
                   <Logo />
@@ -105,7 +105,7 @@ export function SiteHeader() {
               <Link
                 to="/contact"
                 onClick={() => setOpen(false)}
-                className="mt-auto rounded-full bg-void px-5 py-3 text-center text-sm font-semibold text-paper"
+                className="mt-auto rounded-full bg-brand px-5 py-3 text-center text-sm font-semibold text-paper"
               >
                 Get a free consult
               </Link>

@@ -25,7 +25,7 @@ export default function Services() {
                   className={`grid items-center gap-10 md:grid-cols-2 ${reversed ? "md:[&>*:first-child]:order-2" : ""}`}
                 >
                   <div>
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-brand/15 to-heat/10 text-void">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-brand/15 to-heat/10 text-brand-lift">
                       <Icon className="h-6 w-6" />
                     </div>
                     <h2 className="mt-5 font-display text-3xl font-bold text-ink">{service.name}</h2>
@@ -35,7 +35,7 @@ export default function Services() {
                     </p>
                     <Link
                       to={`/contact?service=${encodeURIComponent(service.name)}`}
-                      className="group mt-6 inline-flex items-center gap-1.5 font-semibold text-void"
+                      className="group mt-6 inline-flex items-center gap-1.5 font-semibold text-brand-lift"
                     >
                       Ask about {service.name.toLowerCase()}
                       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -44,7 +44,7 @@ export default function Services() {
                   <ul className="space-y-3 rounded-2xl border border-line bg-card p-7 shadow-sm shadow-ink/5">
                     {service.features.map((feature) => (
                       <li key={feature} className="flex items-start gap-3 text-sm text-ink">
-                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-void" />
+                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-brand-lift" />
                         {feature}
                       </li>
                     ))}

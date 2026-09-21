@@ -65,7 +65,7 @@ export default function Checkout() {
     return (
       <div className="mx-auto max-w-xl px-6 py-28 text-center">
         <h1 className="font-display text-2xl font-bold text-ink">No tickets selected</h1>
-        <Link to={`/events/${event.slug}`} className="mt-6 inline-flex rounded-full bg-void px-6 py-3 font-semibold text-paper">
+        <Link to={`/events/${event.slug}`} className="mt-6 inline-flex rounded-full bg-brand px-6 py-3 font-semibold text-paper">
           Back to event
         </Link>
       </div>
