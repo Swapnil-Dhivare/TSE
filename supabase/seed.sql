@@ -6,22 +6,26 @@
 
 insert into public.events (slug, title, subtitle, description, category, venue_name, city,
                            starts_at, ends_at, status)
+-- date_trunc pins the time-of-day: without it, events inherit whatever clock
+-- time the seed happened to run at (e.g. a 12:15am workshop).
 select v.slug, v.title, v.subtitle, v.descr, v.category, v.venue, v.city,
-       now() + v.offset_days, now() + v.offset_days + interval '3 hours', 'published'
+       date_trunc('day', now() + v.offset_days) + v.start_time,
+       date_trunc('day', now() + v.offset_days) + v.start_time + interval '3 hours',
+       'published'
 from (values
   ('brand-systems-workshop', 'Building Your First Brand System',
    'A hands-on workshop for founders and in-house marketers',
    'Spend an evening building the actual thing: a colour system, a type scale, and a set of rules your team can apply without you in the room. You''ll leave with a working system, not a moodboard.',
-   'Workshop', 'Hub Studio', 'Pune', interval '9 days'),
+   'Workshop', 'Hub Studio', 'Pune', interval '9 days', interval '19 hours'),
   ('social-growth-clinic', 'Social Growth Clinic: Reels That Actually Convert',
    'Bring your account, leave with a 30-day plan',
    'We audit real accounts live and rebuild the content plan in front of you. Limited seats so everyone gets looked at.',
-   'Clinic', null, null, interval '21 days'),
+   'Clinic', null, null, interval '21 days', interval '18 hours'),
   ('founders-mixer', 'Founders Mixer',
    'No pitches, no panels — just the people building things',
    'An evening of actual conversation. Limited capacity, and it always fills.',
-   'Networking', 'The Terrace', 'Pune', interval '3 days')
-) as v(slug, title, subtitle, descr, category, venue, city, offset_days)
+   'Networking', 'The Terrace', 'Pune', interval '3 days', interval '20 hours')
+) as v(slug, title, subtitle, descr, category, venue, city, offset_days, start_time)
 where not exists (
   select 1 from public.events e where e.slug = v.slug and e.deleted_at is null
 );
