@@ -6,6 +6,7 @@ import { TESTIMONIALS } from "@/content/testimonials";
 export function TestimonialCarousel() {
   const [index, setIndex] = useState(0);
   const testimonial = TESTIMONIALS[index];
+  if (!testimonial) return null;
 
   function go(delta: number) {
     setIndex((current) => (current + delta + TESTIMONIALS.length) % TESTIMONIALS.length);
@@ -13,7 +14,7 @@ export function TestimonialCarousel() {
 
   return (
     <div className="relative mx-auto max-w-2xl overflow-hidden rounded-2xl border border-line bg-card p-10 text-center shadow-sm shadow-ink/5">
-      <Quote className="mx-auto h-8 w-8 text-lime" />
+      <Quote className="mx-auto h-8 w-8 text-brand" />
       <AnimatePresence mode="wait">
         <motion.div
           key={testimonial.author}
@@ -23,7 +24,7 @@ export function TestimonialCarousel() {
           transition={{ duration: 0.3 }}
         >
           <p className="mt-5 text-lg leading-relaxed text-ink">"{testimonial.quote}"</p>
-          <div className="mt-6 text-sm font-semibold text-forest">{testimonial.author}</div>
+          <div className="mt-6 text-sm font-semibold text-void">{testimonial.author}</div>
           <div className="text-xs text-muted-foreground">{testimonial.business}</div>
         </motion.div>
       </AnimatePresence>
@@ -33,7 +34,7 @@ export function TestimonialCarousel() {
           type="button"
           onClick={() => go(-1)}
           aria-label="Previous testimonial"
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-forest hover:text-forest"
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-void hover:text-void"
         >
           <ChevronLeft className="h-4 w-4" />
         </button>
@@ -45,7 +46,7 @@ export function TestimonialCarousel() {
               aria-label={`Go to testimonial ${itemIndex + 1}`}
               onClick={() => setIndex(itemIndex)}
               className={`h-1.5 rounded-full transition-all ${
-                itemIndex === index ? "w-6 bg-forest" : "w-1.5 bg-line"
+                itemIndex === index ? "w-6 bg-void" : "w-1.5 bg-line"
               }`}
             />
           ))}
@@ -54,7 +55,7 @@ export function TestimonialCarousel() {
           type="button"
           onClick={() => go(1)}
           aria-label="Next testimonial"
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-forest hover:text-forest"
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink transition-colors hover:border-void hover:text-void"
         >
           <ChevronRight className="h-4 w-4" />
         </button>

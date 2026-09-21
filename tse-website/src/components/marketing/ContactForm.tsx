@@ -8,7 +8,7 @@ const FORM_ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT;
 type Status = "idle" | "submitting" | "success" | "error" | "not-configured";
 
 const inputClass =
-  "w-full rounded-lg border border-line bg-paper px-4 py-2.5 text-sm text-ink outline-none transition-colors focus:border-forest";
+  "w-full rounded-lg border border-line bg-paper px-4 py-2.5 text-sm text-ink outline-none transition-colors focus:border-void";
 const labelClass = "text-sm font-medium text-ink";
 
 export function ContactForm() {
@@ -48,7 +48,7 @@ export function ContactForm() {
   if (status === "success") {
     return (
       <div className="flex flex-col items-center gap-3 rounded-2xl border border-line bg-accent p-10 text-center">
-        <CheckCircle2 className="h-10 w-10 text-forest" />
+        <CheckCircle2 className="h-10 w-10 text-void" />
         <h3 className="font-display text-xl font-semibold text-ink">Message sent</h3>
         <p className="text-sm text-muted-foreground">
           Thanks for reaching out — we'll get back to you within a business day.
@@ -63,8 +63,8 @@ export function ContactForm() {
       className="space-y-5 rounded-2xl border border-line bg-card p-7 shadow-sm shadow-ink/5"
     >
       {status === "not-configured" && (
-        <div className="flex items-start gap-2.5 rounded-lg border border-coral/30 bg-coral/10 p-4 text-sm text-ink">
-          <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0 text-coral" />
+        <div className="flex items-start gap-2.5 rounded-lg border border-heat/30 bg-heat/10 p-4 text-sm text-ink">
+          <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0 text-heat" />
           <span>
             This form isn't connected yet — set <code className="font-mono">VITE_FORM_ENDPOINT</code>{" "}
             in your <code className="font-mono">.env</code> file to a Formspree (or similar) endpoint.
@@ -72,8 +72,8 @@ export function ContactForm() {
         </div>
       )}
       {status === "error" && (
-        <div className="flex items-start gap-2.5 rounded-lg border border-coral/30 bg-coral/10 p-4 text-sm text-ink">
-          <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0 text-coral" />
+        <div className="flex items-start gap-2.5 rounded-lg border border-heat/30 bg-heat/10 p-4 text-sm text-ink">
+          <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0 text-heat" />
           <span>Something went wrong sending your message. Please try again.</span>
         </div>
       )}
@@ -155,7 +155,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="flex w-full items-center justify-center gap-2 rounded-full bg-forest px-6 py-3.5 font-semibold text-paper transition-transform hover:-translate-y-0.5 disabled:opacity-60 disabled:hover:translate-y-0"
+        className="flex w-full items-center justify-center gap-2 rounded-full bg-void px-6 py-3.5 font-semibold text-paper transition-transform hover:-translate-y-0.5 disabled:opacity-60 disabled:hover:translate-y-0"
       >
         {status === "submitting" && <Loader2 className="h-4 w-4 animate-spin" />}
         {status === "submitting" ? "Sending…" : "Send message"}

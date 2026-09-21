@@ -4,7 +4,7 @@ import { ArrowLeft, Compass } from "lucide-react";
 export default function NotFound() {
   return (
     <div className="mx-auto flex max-w-xl flex-col items-center px-6 py-28 text-center">
-      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-accent text-forest">
+      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-accent text-void">
         <Compass className="h-7 w-7" />
       </div>
       <h1 className="mt-6 font-display text-3xl font-bold text-ink">Page not found</h1>
@@ -13,7 +13,7 @@ export default function NotFound() {
       </p>
       <Link
         to="/"
-        className="mt-8 inline-flex items-center gap-2 rounded-full bg-forest px-6 py-3 font-semibold text-paper"
+        className="mt-8 inline-flex items-center gap-2 rounded-full bg-void px-6 py-3 font-semibold text-paper"
       >
         <ArrowLeft className="h-4 w-4" />
         Back to home

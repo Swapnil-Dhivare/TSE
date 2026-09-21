@@ -19,7 +19,7 @@ const item = {
 };
 
 function HeroFallback() {
-  return <div className="h-full w-full rounded-3xl bg-gradient-to-br from-forest via-forest to-coral" />;
+  return <div className="h-full w-full rounded-3xl bg-gradient-to-br from-void via-void to-heat" />;
 }
 
 export function Hero() {
@@ -33,14 +33,14 @@ export function Hero() {
     <motion.section
       ref={sectionRef}
       style={{ opacity: heroOpacity }}
-      className="relative overflow-hidden bg-forest bg-dot-grid-dark text-paper"
+      className="relative overflow-hidden bg-void bg-dot-grid-dark text-paper"
     >
       <GlowOrbs />
       <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-6 py-20 md:grid-cols-2 md:py-28">
         <motion.div style={{ y: textY }} initial="hidden" animate="show" variants={container}>
           <motion.span
             variants={item}
-            className="inline-flex items-center gap-2 rounded-full bg-paper/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-lime"
+            className="inline-flex items-center gap-2 rounded-full bg-paper/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand"
           >
             <Sparkles className="h-3.5 w-3.5" />
             Social Media Growth · Websites · Digital Growth
@@ -50,7 +50,7 @@ export function Hero() {
             className="mt-6 font-display text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl"
           >
             Turn attention into your{" "}
-            <span className="bg-gradient-to-r from-lime to-coral bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-brand to-heat bg-clip-text text-transparent">
               customer base
             </span>
             .
@@ -63,7 +63,7 @@ export function Hero() {
             <Magnetic>
               <Link
                 to="/contact"
-                className="group inline-flex items-center gap-2 rounded-full bg-lime px-7 py-3.5 font-semibold text-paper transition-transform hover:-translate-y-0.5"
+                className="group inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3.5 font-semibold text-paper transition-transform hover:-translate-y-0.5"
               >
                 Get a free consult
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

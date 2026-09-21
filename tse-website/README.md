@@ -56,3 +56,12 @@ it's available.
 - `npm run build` — type-check and produce a production build in `dist/`
 - `npm run preview` — preview the production build
 - `npm run lint` — run Oxlint
+
+## Deployment (Vercel)
+
+The app lives in `tse-website/` inside the repo, so in the Vercel project settings set
+**Root Directory → `tse-website`**. Vercel then picks up `vercel.json` from this folder.
+
+`vercel.json` provides the SPA rewrite (`/(.*)` → `/index.html`). This is required: without it
+any deep link — `/case-studies/:slug`, and later `/auth/callback` for OAuth — returns 404 in
+production even though it works fine under `vite dev`, because those paths are not real files.

@@ -1,22 +1,23 @@
 @import "tailwindcss";
 
 :root {
-  /* Palette matched to technoserveengg.com: brand blue, charcoal dark surface, red accent */
+  /* Role-named tokens. Values are the current blue/charcoal/red set; the new
+     platform identity replaces these values only (no call sites) in Phase 7. */
   --ink: #212529;
   --muted: #6c757d;
   --line: #d3dade;
   --paper: #e8edf1;
   --card: #ffffff;
-  --lime: #0086c5;
-  --forest: #3c363a;
-  --coral: #dc0201;
+  --brand: #0086c5;
+  --void: #3c363a;
+  --heat: #dc0201;
   --radius: 18px;
 
   --background: var(--paper);
   --foreground: var(--ink);
-  --primary: var(--lime);
+  --primary: var(--brand);
   --primary-foreground: var(--paper);
-  --secondary: var(--coral);
+  --secondary: var(--heat);
   --secondary-foreground: var(--paper);
   --muted-surface: #dde3e8;
   --accent-surface: #d6ecfa;
@@ -24,9 +25,9 @@
 
   /* Soft brand-colored washes used behind page content — keeps the light theme from
      reading as flat white while staying subtle enough not to fight card content. */
-  --tint-lime: rgba(0, 134, 197, 0.32);
-  --tint-coral: rgba(220, 2, 1, 0.22);
-  --tint-forest: rgba(60, 54, 58, 0.14);
+  --tint-brand: rgba(0, 134, 197, 0.32);
+  --tint-heat: rgba(220, 2, 1, 0.22);
+  --tint-void: rgba(60, 54, 58, 0.14);
   --dot-light: rgba(33, 37, 41, 0.1);
   --dot-dark: rgba(232, 237, 241, 0.1);
 }
@@ -43,15 +44,15 @@
   --color-muted: var(--muted-surface);
   --color-muted-foreground: var(--muted);
   --color-accent: var(--accent-surface);
-  --color-accent-foreground: var(--forest);
+  --color-accent-foreground: var(--void);
   --color-destructive: var(--danger);
   --color-border: var(--line);
   --color-input: var(--line);
-  --color-ring: var(--lime);
+  --color-ring: var(--brand);
 
-  --color-forest: var(--forest);
-  --color-lime: var(--lime);
-  --color-coral: var(--coral);
+  --color-void: var(--void);
+  --color-brand: var(--brand);
+  --color-heat: var(--heat);
   --color-paper: var(--paper);
   --color-ink: var(--ink);
 
@@ -76,11 +77,11 @@ body {
   background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat;
   background-size: auto, auto, auto, auto, auto, 26px 26px;
   background-image:
-    radial-gradient(46rem 34rem at 4% 2%, var(--tint-lime), transparent 62%),
-    radial-gradient(40rem 32rem at 98% 16%, var(--tint-coral), transparent 62%),
-    radial-gradient(42rem 34rem at 2% 90%, var(--tint-forest), transparent 62%),
-    radial-gradient(38rem 30rem at 100% 98%, var(--tint-lime), transparent 62%),
-    radial-gradient(70rem 60rem at 50% 45%, var(--tint-forest), transparent 70%),
+    radial-gradient(46rem 34rem at 4% 2%, var(--tint-brand), transparent 62%),
+    radial-gradient(40rem 32rem at 98% 16%, var(--tint-heat), transparent 62%),
+    radial-gradient(42rem 34rem at 2% 90%, var(--tint-void), transparent 62%),
+    radial-gradient(38rem 30rem at 100% 98%, var(--tint-brand), transparent 62%),
+    radial-gradient(70rem 60rem at 50% 45%, var(--tint-void), transparent 70%),
     radial-gradient(circle, var(--dot-light) 1px, transparent 1.4px);
 }
 
@@ -90,8 +91,8 @@ body {
 }
 
 ::selection {
-  background: var(--lime);
-  color: var(--forest);
+  background: var(--brand);
+  color: var(--void);
 }
 
 html.custom-cursor,

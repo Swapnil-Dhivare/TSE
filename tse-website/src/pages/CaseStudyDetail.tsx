@@ -15,7 +15,7 @@ export default function CaseStudyDetail() {
 
   return (
     <>
-      <section className="relative overflow-hidden bg-forest bg-dot-grid-dark text-paper">
+      <section className="relative overflow-hidden bg-void bg-dot-grid-dark text-paper">
         <GlowOrbs />
         <div className="relative z-10 mx-auto max-w-4xl px-6 py-16">
           <Link
@@ -25,7 +25,7 @@ export default function CaseStudyDetail() {
             <ArrowLeft className="h-4 w-4" />
             Back to case studies
           </Link>
-          <span className="mt-6 inline-block w-fit rounded-full bg-paper/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-lime">
+          <span className="mt-6 inline-block w-fit rounded-full bg-paper/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-brand">
             {caseStudy.serviceCategory}
           </span>
           <h1 className="mt-5 font-display text-4xl font-bold leading-tight sm:text-5xl">
@@ -67,9 +67,9 @@ export default function CaseStudyDetail() {
         ) : null}
 
         <div className="mt-8 flex items-start gap-4 rounded-2xl border border-line bg-accent p-7">
-          <TrendingUp className="mt-0.5 h-6 w-6 shrink-0 text-forest" />
+          <TrendingUp className="mt-0.5 h-6 w-6 shrink-0 text-void" />
           <div>
-            <div className="text-xs font-semibold uppercase tracking-wide text-forest">Results</div>
+            <div className="text-xs font-semibold uppercase tracking-wide text-void">Results</div>
             <p className="mt-1 font-display text-lg font-semibold text-ink">{caseStudy.results}</p>
           </div>
         </div>

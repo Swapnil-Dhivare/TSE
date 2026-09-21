@@ -34,8 +34,8 @@ export default function CaseStudies() {
               className={cn(
                 "rounded-full border px-5 py-2 text-sm font-semibold transition-colors",
                 filter === label
-                  ? "border-forest bg-forest text-paper"
-                  : "border-line bg-card text-ink hover:border-forest/40",
+                  ? "border-void bg-void text-paper"
+                  : "border-line bg-card text-ink hover:border-void/40",
               )}
             >
               {label}

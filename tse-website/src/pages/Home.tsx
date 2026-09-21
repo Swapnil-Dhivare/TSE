@@ -47,7 +47,7 @@ export default function Home() {
           </div>
           <Link
             to="/case-studies"
-            className="group inline-flex items-center gap-1.5 text-sm font-semibold text-forest"
+            className="group inline-flex items-center gap-1.5 text-sm font-semibold text-void"
           >
             View all work
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

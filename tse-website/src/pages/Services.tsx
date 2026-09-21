@@ -25,17 +25,17 @@ export default function Services() {
                   className={`grid items-center gap-10 md:grid-cols-2 ${reversed ? "md:[&>*:first-child]:order-2" : ""}`}
                 >
                   <div>
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-lime/15 to-coral/10 text-forest">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-brand/15 to-heat/10 text-void">
                       <Icon className="h-6 w-6" />
                     </div>
                     <h2 className="mt-5 font-display text-3xl font-bold text-ink">{service.name}</h2>
-                    <p className="mt-2 text-lg text-coral font-medium">{service.tagline}</p>
+                    <p className="mt-2 text-lg text-heat font-medium">{service.tagline}</p>
                     <p className="mt-4 text-muted-foreground leading-relaxed">
                       {service.description}
                     </p>
                     <Link
                       to={`/contact?service=${encodeURIComponent(service.name)}`}
-                      className="group mt-6 inline-flex items-center gap-1.5 font-semibold text-forest"
+                      className="group mt-6 inline-flex items-center gap-1.5 font-semibold text-void"
                     >
                       Ask about {service.name.toLowerCase()}
                       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -44,7 +44,7 @@ export default function Services() {
                   <ul className="space-y-3 rounded-2xl border border-line bg-card p-7 shadow-sm shadow-ink/5">
                     {service.features.map((feature) => (
                       <li key={feature} className="flex items-start gap-3 text-sm text-ink">
-                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-forest" />
+                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-void" />
                         {feature}
                       </li>
                     ))}

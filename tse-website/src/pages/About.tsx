@@ -9,21 +9,21 @@ const STEPS = [
     title: "Discover",
     description:
       "We start by understanding your business, your customers and what makes you different — not by pitching a package.",
-    tint: "bg-lime/10 text-lime",
+    tint: "bg-brand/10 text-brand",
   },
   {
     icon: Hammer,
     title: "Build",
     description:
       "Social presence, website or content — built specifically for how your customers actually find and choose you.",
-    tint: "bg-coral/10 text-coral",
+    tint: "bg-heat/10 text-heat",
   },
   {
     icon: TrendingUp,
     title: "Grow",
     description:
       "We track what matters, report in plain English, and keep refining instead of disappearing after launch.",
-    tint: "bg-forest/10 text-forest",
+    tint: "bg-void/10 text-void",
   },
 ];
 

@@ -5,7 +5,7 @@ import { SERVICES } from "@/content/services";
 
 export function SiteFooter() {
   return (
-    <footer className="bg-forest bg-dot-grid-dark text-paper">
+    <footer className="bg-void bg-dot-grid-dark text-paper">
       <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 md:grid-cols-3">
         <div className="md:col-span-2">
           <Logo inverted />
@@ -18,7 +18,7 @@ export function SiteFooter() {
               <a
                 key={index}
                 href="#"
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-paper/20 text-paper/70 transition-colors hover:border-lime hover:text-lime"
+                className="flex h-9 w-9 items-center justify-center rounded-full border border-paper/20 text-paper/70 transition-colors hover:border-brand hover:text-brand"
               >
                 <Icon className="h-4 w-4" />
               </a>
@@ -27,7 +27,7 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <h3 className="font-display text-sm font-semibold uppercase tracking-wide text-lime">
+          <h3 className="font-display text-sm font-semibold uppercase tracking-wide text-brand">
             Services
           </h3>
           <ul className="mt-4 space-y-2.5 text-sm text-paper/70">

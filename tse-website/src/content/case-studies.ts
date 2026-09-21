@@ -30,7 +30,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     shortDescription:
       "Technoserve Engineers had built two decades of credibility with sugar mills, steel plants and cement majors entirely through word of mouth. We built them a website that finally represents that track record online.",
     results: "Full service & client catalogue now live · every enquiry now one tap away on mobile",
-    gradient: "from-forest via-forest to-lime",
+    gradient: "from-void via-void to-brand",
     image: {
       src: "/case-studies/technoserve-engineers/home-desktop.jpg",
       alt: "Technoserve Engineers homepage showing their electrical motor and switchgear product range",
@@ -62,7 +62,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     shortDescription:
       "A consistent posting rhythm and a reel-first content strategy took a quiet café from word-of-mouth only to a genuine weekend queue.",
     results: "+64% Instagram engagement · 3x weekend footfall in 90 days",
-    gradient: "from-forest via-forest to-coral",
+    gradient: "from-void via-void to-heat",
   },
   {
     slug: "vantage-legal-website",
@@ -72,7 +72,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     shortDescription:
       "Replaced a decade-old static site with a fast, mobile-first build focused on getting the right enquiries to the right lawyer.",
     results: "+2.4x qualified enquiry form submissions · 1.8s average load time",
-    gradient: "from-forest via-coral to-lime",
+    gradient: "from-void via-heat to-brand",
   },
   {
     slug: "fitworks-studio-content",
@@ -82,6 +82,6 @@ export const CASE_STUDIES: CaseStudy[] = [
     shortDescription:
       "A single day of on-location photo and video production gave this studio a year's worth of reusable content across web, social and print.",
     results: "180+ reusable assets delivered · content used across 4 channels",
-    gradient: "from-coral via-forest to-forest",
+    gradient: "from-heat via-void to-void",
   },
 ];

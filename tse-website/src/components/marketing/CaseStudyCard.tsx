@@ -7,7 +7,7 @@ export function CaseStudyCard({ caseStudy }: { caseStudy: CaseStudy }) {
   return (
     <Link
       to={`/case-studies/${caseStudy.slug}`}
-      className="group block overflow-hidden rounded-2xl border border-line bg-card shadow-sm shadow-ink/5 transition-shadow duration-300 hover:shadow-xl hover:shadow-forest/10"
+      className="group block overflow-hidden rounded-2xl border border-line bg-card shadow-sm shadow-ink/5 transition-shadow duration-300 hover:shadow-xl hover:shadow-void/10"
     >
       <TiltCard className="flex flex-col">
         <div
@@ -25,7 +25,7 @@ export function CaseStudyCard({ caseStudy }: { caseStudy: CaseStudy }) {
           )}
         </div>
         <div className="flex flex-1 flex-col p-6">
-          <span className="w-fit rounded-full bg-accent px-3 py-1 text-xs font-semibold text-forest">
+          <span className="w-fit rounded-full bg-accent px-3 py-1 text-xs font-semibold text-void">
             {caseStudy.serviceCategory}
           </span>
           <h3 className="mt-4 font-display text-lg font-semibold leading-snug text-ink">

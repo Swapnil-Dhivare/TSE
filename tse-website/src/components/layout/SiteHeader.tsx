@@ -20,8 +20,8 @@ function NavItem({ to, label, onClick }: { to: string; label: string; onClick?: 
       onClick={onClick}
       className={({ isActive }) =>
         cn(
-          "text-sm font-medium transition-colors hover:text-forest",
-          isActive ? "text-forest" : "text-ink/70",
+          "text-sm font-medium transition-colors hover:text-void",
+          isActive ? "text-void" : "text-ink/70",
         )
       }
     >
@@ -47,7 +47,7 @@ export function SiteHeader() {
         <div className="hidden md:block">
           <Link
             to="/contact"
-            className="rounded-full bg-forest px-5 py-2.5 text-sm font-semibold text-paper transition-transform hover:-translate-y-0.5 hover:bg-forest/90"
+            className="rounded-full bg-void px-5 py-2.5 text-sm font-semibold text-paper transition-transform hover:-translate-y-0.5 hover:bg-void/90"
           >
             Get a free consult
           </Link>
@@ -64,7 +64,7 @@ export function SiteHeader() {
             </button>
           </Dialog.Trigger>
           <Dialog.Portal>
-            <Dialog.Overlay className="fixed inset-0 z-50 bg-forest/40 backdrop-blur-sm" />
+            <Dialog.Overlay className="fixed inset-0 z-50 bg-void/40 backdrop-blur-sm" />
             <Dialog.Content className="fixed inset-y-0 right-0 z-50 flex w-72 flex-col gap-8 bg-paper px-6 py-6 shadow-xl">
               <div className="flex items-center justify-between">
                 <Dialog.Title asChild>
@@ -88,7 +88,7 @@ export function SiteHeader() {
               <Link
                 to="/contact"
                 onClick={() => setOpen(false)}
-                className="mt-auto rounded-full bg-forest px-5 py-3 text-center text-sm font-semibold text-paper"
+                className="mt-auto rounded-full bg-void px-5 py-3 text-center text-sm font-semibold text-paper"
               >
                 Get a free consult
               </Link>

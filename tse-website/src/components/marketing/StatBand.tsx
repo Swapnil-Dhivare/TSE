@@ -6,22 +6,22 @@ const STATS = [
     value: "3",
     label: "Core services, done properly",
     icon: Layers,
-    accent: "text-lime",
-    tint: "bg-lime/10",
+    accent: "text-brand",
+    tint: "bg-brand/10",
   },
   {
     value: "100%",
     label: "Focus on results, not vanity metrics",
     icon: Target,
-    accent: "text-coral",
-    tint: "bg-coral/10",
+    accent: "text-heat",
+    tint: "bg-heat/10",
   },
   {
     value: "1",
     label: "Dedicated team, no hand-offs",
     icon: Users,
-    accent: "text-forest",
-    tint: "bg-forest/10",
+    accent: "text-void",
+    tint: "bg-void/10",
   },
 ];
 
