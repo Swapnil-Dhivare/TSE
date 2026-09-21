@@ -2,8 +2,7 @@
 -- Money is integer paise everywhere (Razorpay's API uses integer paise; anything
 -- else adds a rounding-bug class at every boundary).
 
-create extension if not exists pgcrypto;
-create extension if not exists citext;
+create extension if not exists pgcrypto with schema extensions;
 
 create type app_role      as enum ('customer','staff','admin');
 create type event_status  as enum ('draft','published','sold_out','cancelled','completed');
@@ -15,7 +14,7 @@ create type ticket_status as enum ('issued','checked_in','cancelled','refunded')
 create table public.profiles (
   id         uuid primary key references auth.users(id) on delete cascade,
   full_name  text,
-  email      citext,
+  email      text,
   phone      text,
   avatar_url text,
   created_at timestamptz not null default now(),
@@ -34,7 +33,7 @@ create table public.user_roles (
 -- ---------- catalogue ----------
 create table public.events (
   id          uuid primary key default gen_random_uuid(),
-  slug        citext not null,
+  slug        text not null,
   title       text not null,
   subtitle    text,
   description text,
@@ -94,7 +93,7 @@ create table public.orders (
   event_id      uuid not null references public.events(id) on delete restrict,
   status        order_status not null default 'awaiting_payment',
   buyer_name    text not null,
-  buyer_email   citext not null,
+  buyer_email   text not null,
   buyer_phone   text,
   subtotal_paise integer not null default 0 check (subtotal_paise >= 0),
   discount_paise integer not null default 0 check (discount_paise >= 0),
@@ -206,12 +205,12 @@ create trigger orders_updated    before update on public.orders
 -- Must never raise: if this trigger errors, ALL signups fail with an opaque
 -- "Database error saving new user".
 create or replace function public.handle_new_user() returns trigger
-language plpgsql security definer set search_path = public, pg_temp as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 begin
   insert into public.profiles (id, email, phone, full_name, avatar_url)
   values (
     new.id,
-    nullif(new.email,'')::citext,
+    nullif(new.email,''),
     new.phone,
     coalesce(new.raw_user_meta_data->>'full_name', new.raw_user_meta_data->>'name'),
     new.raw_user_meta_data->>'avatar_url'

@@ -4,12 +4,12 @@
 -- Opaque 160-bit ticket code. Deliberately NOT a signed JWT: a signature proves
 -- authenticity but cannot express "already used", which is the property check-in needs.
 create or replace function public.issue_ticket_code() returns text
-language sql volatile as $$
+language sql volatile set search_path = public, extensions, pg_temp as $$
   select 'TSE-' || upper(encode(gen_random_bytes(10), 'hex'));
 $$;
 
 create or replace function public.order_summary(p_order_id uuid) returns jsonb
-language sql stable security definer set search_path = public, pg_temp as $$
+language sql stable security definer set search_path = public, extensions, pg_temp as $$
   select jsonb_build_object(
     'order_id', o.id,
     'order_number', o.order_number,
@@ -31,7 +31,7 @@ create or replace function public.create_order(
   p_buyer_phone     text default null,
   p_idempotency_key text default null
 ) returns jsonb
-language plpgsql security definer set search_path = public, pg_temp as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 declare
   v_user_id  uuid := auth.uid();
   v_order_id uuid;
@@ -64,7 +64,7 @@ begin
   insert into public.orders (order_number, user_id, event_id, status, buyer_name,
                              buyer_email, buyer_phone, hold_expires_at, idempotency_key)
   values (v_order_number, v_user_id, p_event_id, 'awaiting_payment', p_buyer_name,
-          p_buyer_email::citext, p_buyer_phone, now() + interval '15 minutes',
+          p_buyer_email, p_buyer_phone, now() + interval '15 minutes',
           p_idempotency_key)
   returning id into v_order_id;
 
@@ -128,7 +128,7 @@ create or replace function public.confirm_order_paid(
   p_order_id uuid, p_payment_id text, p_amount_paise integer,
   p_method text, p_raw jsonb
 ) returns jsonb
-language plpgsql security definer set search_path = public, pg_temp as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 declare
   v_order record;
   v_item  record;
@@ -182,7 +182,7 @@ end $$;
 -- Release holds for abandoned checkouts. Skips orders with a live payment so the
 -- sweeper can never free inventory out from under an in-flight transaction.
 create or replace function public.expire_stale_orders() returns integer
-language plpgsql security definer set search_path = public, pg_temp as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 declare v_order record; v_item record; v_count integer := 0;
 begin
   for v_order in
@@ -208,7 +208,7 @@ end $$;
 -- Atomic single-use check-in. Zero rows updated IS the "already used" signal.
 create or replace function public.checkin_ticket(p_code text, p_event_id uuid)
 returns jsonb
-language plpgsql security definer set search_path = public, pg_temp as $$
+language plpgsql security definer set search_path = public, extensions, pg_temp as $$
 declare v_ticket record; v_result text;
 begin
   if not public.is_staff() then raise exception 'FORBIDDEN' using errcode = '42501'; end if;

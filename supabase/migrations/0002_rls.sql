@@ -14,13 +14,13 @@ alter table public.webhook_events enable row level security;  -- service_role on
 
 -- SECURITY DEFINER avoids infinite recursion (a policy on user_roles querying user_roles).
 create or replace function public.has_role(p_role app_role) returns boolean
-language sql stable security definer set search_path = public, pg_temp as $$
+language sql stable security definer set search_path = public, extensions, pg_temp as $$
   select exists (select 1 from public.user_roles
                   where user_id = (select auth.uid()) and role = p_role);
 $$;
 
 create or replace function public.is_staff() returns boolean
-language sql stable security definer set search_path = public, pg_temp as $$
+language sql stable security definer set search_path = public, extensions, pg_temp as $$
   select exists (select 1 from public.user_roles
                   where user_id = (select auth.uid()) and role in ('staff','admin'));
 $$;
