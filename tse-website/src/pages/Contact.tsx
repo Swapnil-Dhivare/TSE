@@ -35,7 +35,7 @@ export default function Contact() {
               </ol>
             </div>
 
-            <div className="rounded-2xl border border-line bg-card p-6">
+            <div className="rounded-2xl border border-line bg-card p-6 shadow-sm shadow-ink/5">
               <div className="flex items-center gap-2 text-sm font-semibold text-ink">
                 <Mail className="h-4 w-4 text-forest" />
                 hello@tseagency.example

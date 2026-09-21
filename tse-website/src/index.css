@@ -21,6 +21,14 @@
   --muted-surface: #dde3e8;
   --accent-surface: #d6ecfa;
   --danger: #b3261e;
+
+  /* Soft brand-colored washes used behind page content — keeps the light theme from
+     reading as flat white while staying subtle enough not to fight card content. */
+  --tint-lime: rgba(0, 134, 197, 0.32);
+  --tint-coral: rgba(220, 2, 1, 0.22);
+  --tint-forest: rgba(60, 54, 58, 0.14);
+  --dot-light: rgba(33, 37, 41, 0.1);
+  --dot-dark: rgba(232, 237, 241, 0.1);
 }
 
 @theme inline {
@@ -58,8 +66,27 @@
 
 body {
   font-family: var(--font-sans);
-  background: var(--background);
   color: var(--foreground);
+  background-color: var(--background);
+  /* Anchored to the viewport (not the document) so the wash reads as ambient colour in
+     every screenful as you scroll, instead of being a one-off patch buried behind a
+     single section. A fine dot grid rides on top for texture in the areas the colour
+     blobs don't reach, so plain stretches never read as flat empty white. */
+  background-attachment: fixed, fixed, fixed, fixed, fixed, fixed;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat;
+  background-size: auto, auto, auto, auto, auto, 26px 26px;
+  background-image:
+    radial-gradient(46rem 34rem at 4% 2%, var(--tint-lime), transparent 62%),
+    radial-gradient(40rem 32rem at 98% 16%, var(--tint-coral), transparent 62%),
+    radial-gradient(42rem 34rem at 2% 90%, var(--tint-forest), transparent 62%),
+    radial-gradient(38rem 30rem at 100% 98%, var(--tint-lime), transparent 62%),
+    radial-gradient(70rem 60rem at 50% 45%, var(--tint-forest), transparent 70%),
+    radial-gradient(circle, var(--dot-light) 1px, transparent 1.4px);
+}
+
+.bg-dot-grid-dark {
+  background-image: radial-gradient(circle, var(--dot-dark) 1px, transparent 1.4px);
+  background-size: 26px 26px;
 }
 
 ::selection {

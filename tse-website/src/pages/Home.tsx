@@ -18,20 +18,22 @@ export default function Home() {
 
       <Marquee />
 
-      <SectionReveal className="mx-auto max-w-6xl px-6 py-14">
-        <div className="text-center">
-          <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl">What we do</h2>
-          <p className="mt-3 text-muted-foreground">
-            Social media growth, websites and the content that fuels both — done properly, not
-            spread thin.
-          </p>
-        </div>
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {SERVICES.map((service) => (
-            <ServiceCard key={service.slug} service={service} />
-          ))}
-        </div>
-      </SectionReveal>
+      <div className="bg-accent">
+        <SectionReveal className="mx-auto max-w-6xl px-6 py-14">
+          <div className="text-center">
+            <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl">What we do</h2>
+            <p className="mt-3 text-muted-foreground">
+              Social media growth, websites and the content that fuels both — done properly, not
+              spread thin.
+            </p>
+          </div>
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {SERVICES.map((service) => (
+              <ServiceCard key={service.slug} service={service} />
+            ))}
+          </div>
+        </SectionReveal>
+      </div>
 
       <SectionReveal className="mx-auto max-w-6xl px-6 py-14">
         <StatBand />
@@ -58,14 +60,16 @@ export default function Home() {
         </div>
       </SectionReveal>
 
-      <SectionReveal className="mx-auto max-w-6xl px-6 py-14">
-        <h2 className="text-center font-display text-3xl font-bold text-ink sm:text-4xl">
-          What our clients say
-        </h2>
-        <div className="mt-10">
-          <TestimonialCarousel />
-        </div>
-      </SectionReveal>
+      <div className="bg-accent">
+        <SectionReveal className="mx-auto max-w-6xl px-6 py-14">
+          <h2 className="text-center font-display text-3xl font-bold text-ink sm:text-4xl">
+            What our clients say
+          </h2>
+          <div className="mt-10">
+            <TestimonialCarousel />
+          </div>
+        </SectionReveal>
+      </div>
 
       <CTASection
         title="Ready to grow your business?"

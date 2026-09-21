@@ -9,18 +9,21 @@ const STEPS = [
     title: "Discover",
     description:
       "We start by understanding your business, your customers and what makes you different — not by pitching a package.",
+    tint: "bg-lime/10 text-lime",
   },
   {
     icon: Hammer,
     title: "Build",
     description:
       "Social presence, website or content — built specifically for how your customers actually find and choose you.",
+    tint: "bg-coral/10 text-coral",
   },
   {
     icon: TrendingUp,
     title: "Grow",
     description:
       "We track what matters, report in plain English, and keep refining instead of disappearing after launch.",
+    tint: "bg-forest/10 text-forest",
   },
 ];
 
@@ -59,8 +62,10 @@ export default function About() {
             {STEPS.map((step) => {
               const Icon = step.icon;
               return (
-                <div key={step.title} className="rounded-2xl bg-card p-7">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-forest text-lime">
+                <div key={step.title} className="rounded-2xl bg-card p-7 shadow-sm shadow-ink/5">
+                  <div
+                    className={`flex h-12 w-12 items-center justify-center rounded-xl ${step.tint}`}
+                  >
                     <Icon className="h-6 w-6" />
                   </div>
                   <h3 className="mt-5 font-display text-xl font-semibold text-ink">{step.title}</h3>

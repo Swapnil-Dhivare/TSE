@@ -5,7 +5,7 @@ import { SERVICES } from "@/content/services";
 
 export function SiteFooter() {
   return (
-    <footer className="bg-forest text-paper">
+    <footer className="bg-forest bg-dot-grid-dark text-paper">
       <div className="mx-auto grid max-w-6xl gap-10 px-6 py-16 md:grid-cols-3">
         <div className="md:col-span-2">
           <Logo inverted />

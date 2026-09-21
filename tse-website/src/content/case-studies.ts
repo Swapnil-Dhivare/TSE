@@ -1,5 +1,10 @@
 import type { ServiceCategory } from "./services";
 
+export interface CaseStudyImage {
+  src: string;
+  alt: string;
+}
+
 export interface CaseStudy {
   slug: string;
   title: string;
@@ -8,10 +13,47 @@ export interface CaseStudy {
   shortDescription: string;
   results: string;
   gradient: string;
+  /** Hero/thumbnail screenshot. Falls back to the gradient placeholder when omitted. */
+  image?: CaseStudyImage;
+  /** Extra screenshots shown on the case study detail page. */
+  gallery?: CaseStudyImage[];
+  challenge?: string;
+  approach?: string;
 }
 
-// Placeholder case studies — swap for real client work once available.
 export const CASE_STUDIES: CaseStudy[] = [
+  {
+    slug: "technoserve-engineers-website",
+    title: "Giving a 20-year-old engineering firm its first real digital presence",
+    clientName: "Technoserve Engineers",
+    serviceCategory: "Website",
+    shortDescription:
+      "Technoserve Engineers had built two decades of credibility with sugar mills, steel plants and cement majors entirely through word of mouth. We built them a website that finally represents that track record online.",
+    results: "Full service & client catalogue now live · every enquiry now one tap away on mobile",
+    gradient: "from-forest via-forest to-lime",
+    image: {
+      src: "/case-studies/technoserve-engineers/home-desktop.jpg",
+      alt: "Technoserve Engineers homepage showing their electrical motor and switchgear product range",
+    },
+    gallery: [
+      {
+        src: "/case-studies/technoserve-engineers/services-desktop.jpg",
+        alt: "Technoserve Engineers services page listing motor rewinding, repairing and switchgear services",
+      },
+      {
+        src: "/case-studies/technoserve-engineers/clients-desktop.jpg",
+        alt: "Technoserve Engineers client roster page listing sugar, steel, paper and cement plant clients",
+      },
+      {
+        src: "/case-studies/technoserve-engineers/home-mobile.jpg",
+        alt: "Technoserve Engineers homepage on a mobile device",
+      },
+    ],
+    challenge:
+      "Established in 2003 and based in Dombivli, Maharashtra, Technoserve Engineers builds and services electrical panels, switchgear, VFDs and rotating machines for a client list that includes sugar mills, steel and rolling mills, paper plants and cement majors like JSW Steel, Grasim and Ambuja Cement. Despite that roster, the business had no proper website — just a phone number passed along by referral. Anyone searching for them online found nothing that reflected the scale or seriousness of the work.",
+    approach:
+      "We built a straightforward, fast-loading site around what actually wins this kind of B2B enquiry: a clear breakdown of every service (from HT motor rewinding to switchgear sales), an About page that puts their 20+ years of engineering experience front and centre, and a full client directory organised by industry so prospects can see who else trusts them. Contact details — phone and email — are one tap away from every page, on desktop and mobile, so a plant engineer searching from the shop floor can reach them immediately.",
+  },
   {
     slug: "green-leaf-cafe-social",
     title: "Turning a neighbourhood café into a weekend destination",

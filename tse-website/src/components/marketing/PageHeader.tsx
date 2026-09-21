@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { GlowOrbs } from "./GlowOrbs";
 
 export function PageHeader({
   eyebrow,
@@ -12,8 +13,9 @@ export function PageHeader({
   children?: ReactNode;
 }) {
   return (
-    <section className="bg-forest text-paper">
-      <div className="mx-auto max-w-4xl px-6 py-20 text-center">
+    <section className="relative overflow-hidden bg-forest bg-dot-grid-dark text-paper">
+      <GlowOrbs />
+      <div className="relative z-10 mx-auto max-w-4xl px-6 py-20 text-center">
         <span className="inline-block rounded-full bg-paper/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-lime">
           {eyebrow}
         </span>

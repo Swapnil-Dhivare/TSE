@@ -58,7 +58,10 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5 rounded-2xl border border-line bg-card p-7">
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-5 rounded-2xl border border-line bg-card p-7 shadow-sm shadow-ink/5"
+    >
       {status === "not-configured" && (
         <div className="flex items-start gap-2.5 rounded-lg border border-coral/30 bg-coral/10 p-4 text-sm text-ink">
           <TriangleAlert className="mt-0.5 h-4 w-4 shrink-0 text-coral" />

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { CanvasErrorBoundary } from "./CanvasErrorBoundary";
+import { GlowOrbs } from "./GlowOrbs";
 import { Magnetic } from "./Magnetic";
 
 const Hero3D = lazy(() => import("./Hero3D").then((mod) => ({ default: mod.Hero3D })));
@@ -32,9 +33,10 @@ export function Hero() {
     <motion.section
       ref={sectionRef}
       style={{ opacity: heroOpacity }}
-      className="relative overflow-hidden bg-forest text-paper"
+      className="relative overflow-hidden bg-forest bg-dot-grid-dark text-paper"
     >
-      <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-20 md:grid-cols-2 md:py-28">
+      <GlowOrbs />
+      <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-12 px-6 py-20 md:grid-cols-2 md:py-28">
         <motion.div style={{ y: textY }} initial="hidden" animate="show" variants={container}>
           <motion.span
             variants={item}
@@ -47,7 +49,11 @@ export function Hero() {
             variants={item}
             className="mt-6 font-display text-4xl font-bold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl"
           >
-            Turn attention into your customer base.
+            Turn attention into your{" "}
+            <span className="bg-gradient-to-r from-lime to-coral bg-clip-text text-transparent">
+              customer base
+            </span>
+            .
           </motion.h1>
           <motion.p variants={item} className="mt-6 max-w-lg text-lg text-paper/75">
             We build the social presence, websites and content that businesses use to turn

@@ -12,7 +12,7 @@ export function TestimonialCarousel() {
   }
 
   return (
-    <div className="relative mx-auto max-w-2xl overflow-hidden rounded-2xl border border-line bg-card p-10 text-center">
+    <div className="relative mx-auto max-w-2xl overflow-hidden rounded-2xl border border-line bg-card p-10 text-center shadow-sm shadow-ink/5">
       <Quote className="mx-auto h-8 w-8 text-lime" />
       <AnimatePresence mode="wait">
         <motion.div

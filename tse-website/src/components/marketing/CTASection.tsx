@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
+import { GlowOrbs } from "./GlowOrbs";
 import { Magnetic } from "./Magnetic";
 
 export function CTASection({
@@ -14,8 +15,9 @@ export function CTASection({
   to?: string;
 }) {
   return (
-    <section className="bg-forest">
-      <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 px-6 py-20 text-center">
+    <section className="relative overflow-hidden bg-forest bg-dot-grid-dark">
+      <GlowOrbs />
+      <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center gap-6 px-6 py-20 text-center">
         <h2 className="font-display text-3xl font-bold text-paper sm:text-4xl">{title}</h2>
         {description && <p className="max-w-xl text-paper/70">{description}</p>}
         <Magnetic>
