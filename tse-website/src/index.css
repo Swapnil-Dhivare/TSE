@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+:root {
+  /* Palette matched to technoserveengg.com: brand blue, charcoal dark surface, red accent */
+  --ink: #212529;
+  --muted: #6c757d;
+  --line: #d3dade;
+  --paper: #e8edf1;
+  --card: #ffffff;
+  --lime: #0086c5;
+  --forest: #3c363a;
+  --coral: #dc0201;
+  --radius: 18px;
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --primary: var(--lime);
+  --primary-foreground: var(--paper);
+  --secondary: var(--coral);
+  --secondary-foreground: var(--paper);
+  --muted-surface: #dde3e8;
+  --accent-surface: #d6ecfa;
+  --danger: #b3261e;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--ink);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted-surface);
+  --color-muted-foreground: var(--muted);
+  --color-accent: var(--accent-surface);
+  --color-accent-foreground: var(--forest);
+  --color-destructive: var(--danger);
+  --color-border: var(--line);
+  --color-input: var(--line);
+  --color-ring: var(--lime);
+
+  --color-forest: var(--forest);
+  --color-lime: var(--lime);
+  --color-coral: var(--coral);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+
+  --radius-sm: calc(var(--radius) - 10px);
+  --radius-md: calc(var(--radius) - 6px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 6px);
+
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--background);
+  color: var(--foreground);
+}
+
+::selection {
+  background: var(--lime);
+  color: var(--forest);
+}
+
+html.custom-cursor,
+html.custom-cursor * {
+  cursor: none !important;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 24s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
