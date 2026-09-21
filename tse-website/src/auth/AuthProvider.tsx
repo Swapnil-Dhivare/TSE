@@ -23,6 +23,7 @@ const AuthContext = createContext<AuthContextValue | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
+  const [roles, setRoles] = useState<string[]>([]);
   const [status, setStatus] = useState<AuthStatus>(
     isPlatformConfigured ? "loading" : "unauthenticated",
   );
@@ -50,15 +51,30 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     };
   }, []);
 
+  const userId = session?.user?.id;
+  useEffect(() => {
+    if (!supabase || !userId) { setRoles([]); return; }
+    let alive = true;
+    supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", userId)
+      .then(({ data }) => {
+        if (alive) setRoles((data ?? []).map((r: { role: string }) => r.role));
+      });
+    return () => { alive = false; };
+  }, [userId]);
+
   const value = useMemo<AuthContextValue>(() => {
     const user = session?.user ?? null;
     return {
       status,
       session,
       user,
-      // Role comes from app_metadata (server-controlled). user_metadata is
-      // user-writable via updateUser() and must never be trusted for this.
-      isAdmin: ["admin", "staff"].includes(String(user?.app_metadata?.role ?? "")),
+      // Read from public.user_roles — the same table every RLS policy checks.
+      // Using the JWT's app_metadata instead would let the UI and the database
+      // disagree, and user_metadata is user-writable so it must never be used.
+      isAdmin: roles.some((r) => r === "admin" || r === "staff"),
       async signInWithGoogle(next?: string) {
         if (!supabase) throw new Error("Auth is not configured");
         const target = next ? `?next=${encodeURIComponent(next)}` : "";
@@ -81,7 +97,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         await supabase?.auth.signOut();
       },
     };
-  }, [session, status]);
+  }, [session, status, roles]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
