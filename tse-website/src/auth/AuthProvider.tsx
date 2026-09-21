@@ -14,7 +14,7 @@ interface AuthContextValue {
   user: User | null;
   isAdmin: boolean;
   signInWithGoogle: (next?: string) => Promise<void>;
-  sendMagicLink: (email: string, next?: string) => Promise<void>;
+  sendMagicLink: (email: string, opts?: { next?: string; signUp?: boolean; fullName?: string }) => Promise<void>;
   sendPhoneOtp: (phone: string) => Promise<void>;
   verifyPhoneOtp: (phone: string, token: string) => Promise<void>;
   signOut: () => Promise<void>;
@@ -84,14 +84,26 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           options: { redirectTo: `${window.location.origin}/auth/callback${target}` },
         });
       },
-      async sendMagicLink(email: string, next?: string) {
+      async sendMagicLink(email, opts = {}) {
         if (!supabase) throw new Error("Auth is not configured");
+        const { next, signUp = false, fullName } = opts;
         const target = next ? `?next=${encodeURIComponent(next)}` : "";
         const { error } = await supabase.auth.signInWithOtp({
           email,
-          options: { emailRedirectTo: `${window.location.origin}/auth/callback${target}` },
+          options: {
+            emailRedirectTo: `${window.location.origin}/auth/callback${target}`,
+            // Sign-in must NOT silently create an account, otherwise a typo'd
+            // address quietly makes a second empty account instead of erroring.
+            shouldCreateUser: signUp,
+            ...(signUp && fullName ? { data: { full_name: fullName } } : {}),
+          },
         });
-        if (error) throw error;
+        if (error) {
+          if (/signups not allowed|not allowed for otp|user not found/i.test(error.message)) {
+            throw new Error("NO_ACCOUNT");
+          }
+          throw error;
+        }
       },
       async sendPhoneOtp(phone: string) {
         if (!supabase) throw new Error("Auth is not configured");
