@@ -14,6 +14,7 @@ interface AuthContextValue {
   user: User | null;
   isAdmin: boolean;
   signInWithGoogle: (next?: string) => Promise<void>;
+  sendMagicLink: (email: string, next?: string) => Promise<void>;
   sendPhoneOtp: (phone: string) => Promise<void>;
   verifyPhoneOtp: (phone: string, token: string) => Promise<void>;
   signOut: () => Promise<void>;
@@ -82,6 +83,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           provider: "google",
           options: { redirectTo: `${window.location.origin}/auth/callback${target}` },
         });
+      },
+      async sendMagicLink(email: string, next?: string) {
+        if (!supabase) throw new Error("Auth is not configured");
+        const target = next ? `?next=${encodeURIComponent(next)}` : "";
+        const { error } = await supabase.auth.signInWithOtp({
+          email,
+          options: { emailRedirectTo: `${window.location.origin}/auth/callback${target}` },
+        });
+        if (error) throw error;
       },
       async sendPhoneOtp(phone: string) {
         if (!supabase) throw new Error("Auth is not configured");
