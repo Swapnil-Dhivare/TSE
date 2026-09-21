@@ -26,6 +26,7 @@ export function AdminLayout() {
             </nav>
           </div>
           <div className="flex items-center gap-3 text-xs text-muted-foreground">
+            <Link to="/" className="hidden font-medium hover:text-ink sm:inline">View site ↗</Link>
             <span className="hidden sm:inline">{user?.email}</span>
             <button type="button" onClick={() => void signOut()}
               className="rounded-full border border-line px-4 py-1.5 font-semibold text-ink">

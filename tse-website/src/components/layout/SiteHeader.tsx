@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Menu, Ticket, X } from "lucide-react";
+import { LayoutDashboard, Menu, Ticket, X } from "lucide-react";
 import { Logo } from "@/components/marketing/Logo";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/auth/AuthProvider";
@@ -34,7 +34,7 @@ function NavItem({ to, label, onClick }: { to: string; label: string; onClick?: 
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
-  const { status } = useAuth();
+  const { status, isAdmin } = useAuth();
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-void/70 backdrop-blur-xl">
@@ -51,16 +51,32 @@ export function SiteHeader() {
           {status === "loading" ? (
             <span className="h-10 w-28 animate-pulse rounded-full bg-muted" aria-hidden />
           ) : status === "authenticated" ? (
-            <Link
-              to="/account"
-              className="flex items-center gap-2 rounded-full border border-line px-4 py-2 text-sm font-semibold text-ink hover:border-brand/50"
-            >
-              <Ticket className="h-4 w-4 text-brand" /> My tickets
-            </Link>
+            <>
+              {isAdmin && (
+                <Link
+                  to="/admin"
+                  className="flex items-center gap-2 rounded-full border border-brand/40 bg-brand/10 px-4 py-2 text-sm font-semibold text-brand-lift hover:bg-brand/20"
+                >
+                  <LayoutDashboard className="h-4 w-4" /> Admin
+                </Link>
+              )}
+              <Link
+                to="/account"
+                className="flex items-center gap-2 rounded-full border border-line px-4 py-2 text-sm font-semibold text-ink hover:border-brand/50"
+              >
+                <Ticket className="h-4 w-4 text-brand" /> My tickets
+              </Link>
+            </>
           ) : (
-            <Link to="/auth/sign-in" className="text-sm font-medium text-ink/70 hover:text-brand-lift">
-              Sign in
-            </Link>
+            <>
+              <Link to="/auth/sign-in" className="text-sm font-medium text-ink/70 hover:text-brand-lift">
+                Sign in
+              </Link>
+              <Link to="/auth/sign-in?mode=signup"
+                className="rounded-full border border-line px-4 py-2 text-sm font-semibold text-ink hover:border-brand/50">
+                Sign up
+              </Link>
+            </>
           )}
           <Link
             to="/contact"
@@ -101,6 +117,19 @@ export function SiteHeader() {
                 {NAV_LINKS.map((link) => (
                   <NavItem key={link.to} {...link} onClick={() => setOpen(false)} />
                 ))}
+                {status === "authenticated" ? (
+                  <>
+                    {isAdmin && (
+                      <NavItem to="/admin" label="Admin" onClick={() => setOpen(false)} />
+                    )}
+                    <NavItem to="/account" label="My tickets" onClick={() => setOpen(false)} />
+                  </>
+                ) : (
+                  <>
+                    <NavItem to="/auth/sign-in" label="Sign in" onClick={() => setOpen(false)} />
+                    <NavItem to="/auth/sign-in?mode=signup" label="Sign up" onClick={() => setOpen(false)} />
+                  </>
+                )}
               </nav>
               <Link
                 to="/contact"

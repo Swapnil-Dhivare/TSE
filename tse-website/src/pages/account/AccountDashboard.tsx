@@ -1,13 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
-import { Ticket } from "lucide-react";
+import { LayoutDashboard, Ticket } from "lucide-react";
 import { useAuth } from "@/auth/AuthProvider";
 import { listMyTickets } from "@/api/orders";
 import { qk } from "@/lib/query-keys";
 import { isPlatformConfigured } from "@/lib/env";
 
 export default function AccountDashboard() {
-  const { user, signOut } = useAuth();
+  const { user, signOut, isAdmin } = useAuth();
   const uid = user?.id ?? "anon";
   const { data: tickets, isLoading } = useQuery({
     queryKey: qk.me.tickets(uid),
@@ -22,12 +22,20 @@ export default function AccountDashboard() {
           <h1 className="font-display text-3xl font-bold text-ink">My tickets</h1>
           <p className="mt-1 text-sm text-muted-foreground">{user?.email ?? user?.phone}</p>
         </div>
-        <button
-          type="button" onClick={() => void signOut()}
-          className="rounded-full border border-line px-5 py-2 text-sm font-semibold text-ink"
-        >
-          Sign out
-        </button>
+        <div className="flex items-center gap-3">
+          {isAdmin && (
+            <Link to="/admin"
+              className="inline-flex items-center gap-2 rounded-full border border-brand/40 bg-brand/10 px-5 py-2 text-sm font-semibold text-brand-lift">
+              <LayoutDashboard className="h-4 w-4" /> Admin
+            </Link>
+          )}
+          <button
+            type="button" onClick={() => void signOut()}
+            className="rounded-full border border-line px-5 py-2 text-sm font-semibold text-ink"
+          >
+            Sign out
+          </button>
+        </div>
       </div>
 
       {isLoading ? (
